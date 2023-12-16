@@ -1,0 +1,91 @@
+[
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "example",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "example",
+        "description": "example",
+        "detail": "example",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "timeit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "timeit",
+        "description": "timeit",
+        "detail": "timeit",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "ThreadPoolExecutor",
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "isExtraImport": true,
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "arr",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "arr = np.array([1.0, 2.0, 3.0, 4.0])\nexample.modify_array(arr)\nprint(arr)  # Expected output: [2.0, 4.0, 6.0, 8.0]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "otsu_threshold",
+        "kind": 2,
+        "importPath": "otsu",
+        "description": "otsu",
+        "peekOfCode": "def otsu_threshold(img):\n    #blur = cv2.GaussianBlur(img, (9, 9), 0)\n    _, thresholded = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)\n    return img, thresholded\ndef process_image(image_path):\n    img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)\n    print(image_path)\n    original_img, thresholded_img = otsu_threshold(img)\n    return original_img, thresholded_img\ndef otsu(image_paths):",
+        "detail": "otsu",
+        "documentation": {}
+    },
+    {
+        "label": "process_image",
+        "kind": 2,
+        "importPath": "otsu",
+        "description": "otsu",
+        "peekOfCode": "def process_image(image_path):\n    img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)\n    print(image_path)\n    original_img, thresholded_img = otsu_threshold(img)\n    return original_img, thresholded_img\ndef otsu(image_paths):\n    with ThreadPoolExecutor() as executor:\n        results = list(executor.map(process_image, image_paths))\n    for original_img, thresholded_img in results:\n        plt.subplot(1, 2, 1), plt.imshow(original_img, cmap='gray')",
+        "detail": "otsu",
+        "documentation": {}
+    },
+    {
+        "label": "otsu",
+        "kind": 2,
+        "importPath": "otsu",
+        "description": "otsu",
+        "peekOfCode": "def otsu(image_paths):\n    with ThreadPoolExecutor() as executor:\n        results = list(executor.map(process_image, image_paths))\n    for original_img, thresholded_img in results:\n        plt.subplot(1, 2, 1), plt.imshow(original_img, cmap='gray')\n        plt.title('Original Image'), plt.xticks([]), plt.yticks([])\n        plt.subplot(1, 2, 2), plt.imshow(thresholded_img, cmap='gray')\n        plt.title(\"Otsu's Thresholding\"), plt.xticks([]), plt.yticks([])\n        plt.show()\nif __name__ == \"__main__\":",
+        "detail": "otsu",
+        "documentation": {}
+    }
+]
